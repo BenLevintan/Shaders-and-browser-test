@@ -1,0 +1,2 @@
+this project was created in order to learn about the workflow and development of basic pygame games that are playable in browser
+this i meant for me to learn about how to create and use compatible shaders with web assembly and another stuff 
