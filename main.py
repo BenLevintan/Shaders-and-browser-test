@@ -32,7 +32,7 @@ async def main():
     move_delay = 100 # Snake moves every 100 milliseconds
 
     while running:
-        dt = clock.tick(60) # Run loop at 60 FPS
+        dt = clock.tick(60) 
         move_timer += dt
 
         # 2. Event Handling
@@ -40,7 +40,6 @@ async def main():
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.KEYDOWN:
-                # Prevent snake from reversing into itself
                 if event.key == pygame.K_UP and dy != 1:
                     dx, dy = 0, -1
                 elif event.key == pygame.K_DOWN and dy != -1:
