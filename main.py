@@ -1,6 +1,8 @@
 import pygame
 import asyncio
+import moderngl
 import random
+import array
 import sys
 
 # 1. Initialization and Constants
@@ -15,6 +17,16 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Async Snake")
 clock = pygame.time.Clock()
 
+ctx = moderngl.create_context()
+quad_buffer = ctx.buffer(data=array('f',[
+    # position {x, y}, uv coords (x, y)
+    -1.0, 1.0, 0.0, 0.0,
+    1.0, 1.0, 1.0, 0.0,
+    -1.0, -1.0, 0.0, 1.0,
+    1.0, -1.0, 1.0, 1.0
+
+]))
+
 # Colors
 BG_COLOR = (30, 30, 30)
 SNAKE_COLOR = (46, 204, 113)
@@ -26,10 +38,9 @@ async def main():
     dx, dy = 1, 0 # Current direction
     food = (random.randint(0, GRID_WIDTH - 1), random.randint(0, GRID_HEIGHT - 1))
     running = True
-    
-    # Timer to control snake speed independently of frame rate
+  
     move_timer = 0
-    move_delay = 100 # Snake moves every 100 milliseconds
+    move_delay = 100
 
     while running:
         dt = clock.tick(60) 
